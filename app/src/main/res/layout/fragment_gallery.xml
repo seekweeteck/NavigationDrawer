@@ -10,14 +10,24 @@
         android:layout_height="wrap_content"
         android:text="@string/hello_gallery_fragment"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView2" />
 
     <ImageView
+        android:id="@+id/imageViewFile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView3"
-        android:src="@drawable/ic_menu_gallery"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:src="@drawable/ic_menu_gallery" />
+
+    <Button
+        android:id="@+id/buttonGetFile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="11dp"
+        android:text="@string/get_file" />
 
 </RelativeLayout>

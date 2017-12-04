@@ -1,18 +1,31 @@
 package my.edu.tarc.mynavigationdrawer;
 
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.ParcelFileDescriptor;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import java.io.FileDescriptor;
+import java.io.IOException;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class GalleryFragment extends Fragment {
 
+    private static final int REQUEST_PICK = 1;
+    private ImageView imageViewPhoto;
 
     public GalleryFragment() {
         // Required empty public constructor
@@ -22,7 +35,43 @@ public class GalleryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_gallery, container, false);
+        // Inflate the layout for this fragment
+        View v = inflater.inflate(R.layout.fragment_gallery, container, false);
+
+        //Linking UI to program
+        imageViewPhoto = (ImageView)v.findViewById(R.id.imageViewFile);
+        Button buttonGetFile = (Button)v.findViewById(R.id.buttonGetFile);
+        buttonGetFile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Button clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+
+                // Filter to only show results that can be "opened"
+                intent.addCategory(Intent.CATEGORY_OPENABLE);
+
+                // Filter to show only images, using the image MIME data type.
+                intent.setType("image/*");
+
+                startActivityForResult(intent, REQUEST_PICK);
+            }
+        });
+        return v;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_PICK && resultCode == Activity.RESULT_OK){
+            // Pull that URI using resultData.getData().
+            Uri uri = null;
+            if (data != null) {
+                uri = data.getData();
+
+                imageViewPhoto.setImageURI (uri);
+
+            }
+        }
     }
 
 }

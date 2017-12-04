@@ -3,9 +3,12 @@ package my.edu.tarc.mynavigationdrawer;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.zip.Inflater;
 
 import my.edu.tarc.mynavigationdrawer.R;
 
@@ -13,7 +16,6 @@ import my.edu.tarc.mynavigationdrawer.R;
  * A simple {@link Fragment} subclass.
  */
 public class PhotoFragment extends Fragment {
-
 
     public PhotoFragment() {
         // Required empty public constructor
@@ -24,7 +26,7 @@ public class PhotoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_photo, container, false);
+        return  inflater.inflate(R.layout.fragment_photo, container, false);
     }
 
 }
